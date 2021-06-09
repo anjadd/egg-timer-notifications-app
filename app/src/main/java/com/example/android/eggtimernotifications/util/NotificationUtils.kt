@@ -16,6 +16,7 @@
 
 package com.example.android.eggtimernotifications.util
 
+import android.app.Notification
 import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Context
@@ -26,16 +27,19 @@ import com.example.android.eggtimernotifications.MainActivity
 import com.example.android.eggtimernotifications.R
 import com.example.android.eggtimernotifications.receiver.SnoozeReceiver
 
+/**
+ * NotificationUtils.kt has extension methods on the NotificationManager.
+ */
+
 // Notification ID.
 private val NOTIFICATION_ID = 0
 private val REQUEST_CODE = 0
 private val FLAGS = 0
 
-// TODO: Step 1.1 extension function to send messages (GIVEN)
+
 /**
- * Builds and delivers the notification.
- *
- * @param context, activity context.
+ * Step 1.1 Create an Extension function to send messages
+ * It builds and delivers the notification.
  */
 fun NotificationManager.sendNotification(messageBody: String, applicationContext: Context) {
     // Create the content intent for the notification, which launches
@@ -48,23 +52,34 @@ fun NotificationManager.sendNotification(messageBody: String, applicationContext
 
     // TODO: Step 2.2 add snooze action
 
-    // TODO: Step 1.2 get an instance of NotificationCompat.Builder
-    // Build the notification
+    /** Step 1.2 Get an instance of NotificationCompat.Builder (instead of Notification.Builder),
+     * to support devices that run older versions of Android.
+     *
+     * Step 1.3 Set icon, title, and text to builder.
+     *     Title = Egg Timer
+     *     Text = Your egg is ready!!
+     *
+     * Build the notification. */
+    val builder = NotificationCompat.Builder(
+        applicationContext,
+        applicationContext.getString(R.string.egg_notification_channel_id)
+    )
+        .setSmallIcon(R.drawable.cooked_egg)
+        .setContentTitle(applicationContext.getString(R.string.notification_title))
+        .setContentText(messageBody)
+
+    /** Step 1.4 Send the notification - call notify */
+    notify(NOTIFICATION_ID, builder.build())
 
     // TODO: Step 1.8 use the new 'breakfast' notification channel
 
-    // TODO: Step 1.3 set title, text and icon to builder
-
     // TODO: Step 1.13 set content intent
 
-        // TODO: Step 2.1 add style to builder
+    // TODO: Step 2.1 add style to builder
 
-        // TODO: Step 2.3 add snooze action
+    // TODO: Step 2.3 add snooze action
 
-        // TODO: Step 2.5 set priority
-
-    // TODO: Step 1.4 call notify
-
+    // TODO: Step 2.5 set priority
 }
 
 // TODO: Step 1.14 Cancel all notifications
