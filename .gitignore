@@ -1,3 +1,11 @@
+*.iml
+.gradle
+/local.properties
+.idea
+.DS_Store
+/build
+/captures
+.externalNativeBuild
 start/.gradle/5.1.1/gc.properties
 start/.gradle/5.1.1/executionHistory/executionHistory.bin
 start/.gradle/5.1.1/executionHistory/executionHistory.lock
