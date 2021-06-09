@@ -50,16 +50,45 @@ class EggTimerFragment : Fragment() {
         binding.eggTimerViewModel = viewModel
         binding.lifecycleOwner = this.viewLifecycleOwner
 
-        // TODO: Step 1.7 call create channel
+        /** Step 1.7 Call create channel.
+         * You need to pass the same channel ID as the one you passed to the notification builder
+         * in NotificationUtils.kt. */
+        createChannel(
+            getString(R.string.egg_notification_channel_id),
+            getString(R.string.egg_notification_channel_name)
+        )
 
         return binding.root
     }
 
+    /**
+     * A Notification Channel
+     *
+     * Step 1.6 Create a Notification Channel
+     * All notifications must be assigned to a channel (API 26+).
+     * Notification Channels are a way to group notifications.
+     */
     private fun createChannel(channelId: String, channelName: String) {
-        // TODO: Step 1.6 START create a channel
 
-        // TODO: Step 1.6 END create a channel
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
 
+            // Create a channel
+            val notificationChannel =
+                NotificationChannel(channelId, channelName, NotificationManager.IMPORTANCE_LOW)
+
+            // Set some channel settings
+            notificationChannel.enableLights(true)
+            notificationChannel.lightColor = Color.RED
+            notificationChannel.enableVibration(true)
+            notificationChannel.description = "Time for Breakfast"
+
+            // Get an instance of NotificationManager
+            val notificationManager =
+                requireActivity().getSystemService(NotificationManager::class.java)
+
+            // Call createNotificationChannel() on the NotificationManager
+            notificationManager.createNotificationChannel(notificationChannel)
+        }
     }
 
     companion object {
