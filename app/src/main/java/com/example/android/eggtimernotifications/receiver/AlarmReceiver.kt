@@ -25,6 +25,10 @@ import androidx.core.content.ContextCompat
 import com.example.android.eggtimernotifications.R
 import com.example.android.eggtimernotifications.util.sendNotification
 
+/**
+ * AlarmReceiver is a Broadcast Receiver. It is triggered by the AlarmManager to send the
+ * notification when the user-defined timer is up.
+ */
 class AlarmReceiver: BroadcastReceiver() {
 
     override fun onReceive(context: Context, intent: Intent) {

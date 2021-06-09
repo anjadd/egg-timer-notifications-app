@@ -21,7 +21,11 @@ import android.widget.TextView
 import androidx.databinding.BindingAdapter
 
 /**
- * Converts milliseconds to formatted mm:ss
+ * BindingUtils.kt has binding adapters to enable data binding between the app UI and the ViewModel.
+ */
+
+/**
+ * The setElapsedTime() converts milliseconds to formatted mm:ss
  *
  * @param value, time in milliseconds.
  */
